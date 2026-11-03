@@ -1,0 +1,520 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+enum StaffRole {
+  SUPER_ADMIN
+  STORE_MANAGER
+  AQUA_TECHNICIAN
+  CASHIER
+  WAREHOUSE_KEEPER
+}
+
+enum ProductCategory {
+  WATER_TREATMENT
+  PROBIOTIC
+  MINERAL_NUTRITION
+  AQUA_FEED
+  AQUA_MEDICINE
+  EQUIPMENT_SUPPLIES
+}
+
+enum PaymentMethod {
+  CASH
+  VIETQR
+  BANK_TRANSFER
+  CROP_DEBT
+  MIXED
+}
+
+enum BatchExpiryStatus {
+  GOOD
+  NEAR_EXPIRY
+  EXPIRED
+}
+
+enum StockTransactionType {
+  POS_SALE
+  PURCHASE_RECEIPT
+  STOCKTAKE_ADJUST
+  TRANSFER_OUT
+  TRANSFER_IN
+  CUSTOMER_RETURN
+  SUPPLIER_RETURN
+}
+
+enum CustomerTier {
+  BRONZE
+  SILVER
+  GOLD
+  DIAMOND
+}
+
+enum OrderStatus {
+  COMPLETED
+  CANCELLED
+  PENDING
+}
+
+enum PrescriptionStatus {
+  DRAFT
+  DISPATCHED_TO_POS
+  COMPLETED
+}
+
+enum WarrantyStatus {
+  ACTIVE
+  EXPIRED
+  CLAIMED
+}
+
+enum TransferStatus {
+  PENDING
+  IN_TRANSIT
+  COMPLETED
+  CANCELLED
+}
+
+enum ShiftStatus {
+  OPEN
+  CLOSED
+}
+
+// ----------------------------------------------------
+// 1. Staff & Permissions
+// ----------------------------------------------------
+model Staff {
+  id                    String        @id @default(uuid())
+  staffCode             String        @unique
+  name                  String
+  phone                 String        @unique
+  email                 String?
+  role                  StaffRole     @default(CASHIER)
+  pinCode               String        // 4-6 digit touch PIN code
+  active                Boolean       @default(true)
+  discountLimitPercent  Decimal       @default(5.0) @db.Decimal(5, 2)
+  canVoidOrder          Boolean       @default(false)
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+
+  orders                Order[]
+  shiftSessions         ShiftSession[]
+  prescriptions         WaterTestPrescription[]
+  stockCards            StockCard[]
+  purchaseOrders        PurchaseOrder[]
+  debtReceipts          DebtPaymentReceipt[]
+}
+
+// ----------------------------------------------------
+// 2. Customer & Aquaculture Farm Profile
+// ----------------------------------------------------
+model Customer {
+  id            String        @id @default(uuid())
+  customerCode  String        @unique
+  name          String
+  nickname      String?       // Tên thường gọi: Chú Sáu Tùng, Chú Bảy Cà Mau
+  phone         String        @unique
+  idCard        String?       // CCCD
+  address       String
+  district      String?
+  province      String        // Bến Tre, Bạc Liêu, Cà Mau, Sóc Trăng...
+  tier          CustomerTier  @default(BRONZE)
+  rewardPoints  Int           @default(0)
+  creditLimit   Decimal       @default(50000000) @db.Decimal(15, 2) // Hạn mức nợ tối đa
+  currentDebt   Decimal       @default(0) @db.Decimal(15, 2)       // Dư nợ vụ nuôi hiện tại
+  notes         String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  ponds         FarmPond[]
+  cropDebts     CropDebtLedger[]
+  debtReceipts  DebtPaymentReceipt[]
+  orders        Order[]
+  prescriptions WaterTestPrescription[]
+  warranties    WarrantyRecord[]
+}
+
+model FarmPond {
+  id              String        @id @default(uuid())
+  customerId      String
+  customer        Customer      @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  name            String        // Ví dụ: Ao Số 1 (Lót bạt đáy), Ao Tròn Nổi 2
+  pondType        String        // Ao bạt đáy, Đất sinh thái, Tròn nổi HDPE
+  areaM2          Decimal       @db.Decimal(10, 2)
+  waterVolumeM3   Decimal       @db.Decimal(10, 2)
+  targetSpecies   String        // Tôm thẻ chân trắng, Tôm sú, Cá tra
+  stockingDate    DateTime?     // Ngày thả giống
+  shrimpAgeDays   Int           @default(0)
+  status          String        @default("Đang nuôi") // Đang nuôi, Đang cải tạo ao, Đã thu hoạch
+  notes           String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  cropDebts       CropDebtLedger[]
+  orders          Order[]
+  prescriptions   WaterTestPrescription[]
+}
+
+model CropDebtLedger {
+  id              String        @id @default(uuid())
+  customerId      String
+  customer        Customer      @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  pondId          String?
+  pond            FarmPond?     @relation(fields: [pondId], references: [id])
+  cropSeasonName  String        // Vụ 1 - Tôm Thẻ 2026
+  initialDebt     Decimal       @default(0) @db.Decimal(15, 2)
+  totalDebt       Decimal       @default(0) @db.Decimal(15, 2)
+  dueDate         DateTime?     // Hạn chót thanh toán (khi thu hoạch tôm)
+  status          String        @default("ACTIVE") // ACTIVE, SETTLED, OVERDUE
+  notes           String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  debtReceipts    DebtPaymentReceipt[]
+  orders          Order[]
+}
+
+model DebtPaymentReceipt {
+  id                String          @id @default(uuid())
+  receiptCode       String          @unique
+  customerId        String
+  customer          Customer        @relation(fields: [customerId], references: [id])
+  cropDebtLedgerId  String?
+  cropDebtLedger    CropDebtLedger? @relation(fields: [cropDebtLedgerId], references: [id])
+  amount            Decimal         @db.Decimal(15, 2)
+  paymentMethod     PaymentMethod   @default(CASH)
+  referenceCode     String?         // Mã giao dịch ngân hàng / VietQR
+  staffId           String
+  staff             Staff           @relation(fields: [staffId], references: [id])
+  notes             String?
+  createdAt         DateTime        @default(now())
+}
+
+// ----------------------------------------------------
+// 3. Products, Batches & Inventory (FEFO & UOM)
+// ----------------------------------------------------
+model Product {
+  id                  String            @id @default(uuid())
+  sku                 String            @unique
+  barcode             String            @unique
+  name                String
+  scientificName      String?
+  activeIngredients   String?           // Hoạt chất: Yucca 100%, Iodine 9000, NaHCO3 99%...
+  category            ProductCategory
+  baseUnit            String            // Chai, Gói, Bao, Can, Cuộn, Cái, Kg
+  costPrice           Decimal           @db.Decimal(15, 2) // Giá vốn bình quân (MAC)
+  retailPrice         Decimal           @db.Decimal(15, 2) // Giá bán lẻ niêm yết
+  wholesalePrice      Decimal?          @db.Decimal(15, 2) // Giá sỉ cho trại lớn
+  minStockAlert       Int               @default(10)
+  maxStockAlert       Int               @default(500)
+  active              Boolean           @default(true)
+  description         String?
+  usageInstructions   String?           // Hướng dẫn sử dụng: tạt 1L/1000m3
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  unitConversions     UnitConversion[]
+  batches             Batch[]
+  stockCards          StockCard[]
+  orderItems          OrderItem[]
+  purchaseOrderItems  PurchaseOrderItem[]
+  prescriptionItems   PrescriptionItem[]
+  warranties          WarrantyRecord[]
+  transferItems       TransferOrderItem[]
+}
+
+model UnitConversion {
+  id                  String    @id @default(uuid())
+  productId           String
+  product             Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  unitName            String    // Thùng (12 Chai), Bao (25kg), Can (20L)
+  conversionRate      Decimal   @db.Decimal(10, 3) // 12, 25, 20
+  price               Decimal   @db.Decimal(15, 2)
+  isDefaultSaleUnit   Boolean   @default(false)
+  barcode             String?
+
+  @@unique([productId, unitName])
+}
+
+model Batch {
+  id                  String             @id @default(uuid())
+  productId           String
+  product             Product            @relation(fields: [productId], references: [id], onDelete: Cascade)
+  batchNumber         String             // L-202610-01
+  manufacturingDate   DateTime
+  expiryDate          DateTime
+  quantity            Decimal            @default(0) @db.Decimal(10, 2)
+  costPrice           Decimal            @db.Decimal(15, 2)
+  status              BatchExpiryStatus  @default(GOOD)
+  warehouseLocation   String?            // Kệ A1, Kho Lạnh, Kho Bờ Ao
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+
+  stockCards          StockCard[]
+  orderItems          OrderItem[]
+  purchaseOrderItems  PurchaseOrderItem[]
+  transferItems       TransferOrderItem[]
+
+  @@unique([productId, batchNumber])
+}
+
+model StockCard {
+  id              String                @id @default(uuid())
+  productId       String
+  product         Product               @relation(fields: [productId], references: [id])
+  batchId         String?
+  batch           Batch?                @relation(fields: [batchId], references: [id])
+  transactionType StockTransactionType
+  documentNo      String                // #POS-1049, #PO-0012, #STK-001
+  staffId         String
+  staff           Staff                 @relation(fields: [staffId], references: [id])
+  changeQuantity  Decimal               @db.Decimal(10, 2) // +30 hoặc -2
+  balanceAfter    Decimal               @db.Decimal(10, 2) // 45
+  unitPrice       Decimal?              @db.Decimal(15, 2)
+  reasonNote      String?
+  createdAt       DateTime              @default(now())
+}
+
+// ----------------------------------------------------
+// 4. Suppliers & Purchase Orders
+// ----------------------------------------------------
+model Supplier {
+  id              String          @id @default(uuid())
+  supplierCode    String          @unique
+  name            String          // Công ty C.P., Grobest, Vemedim...
+  taxCode         String?
+  phone           String
+  email           String?
+  address         String
+  contactPerson   String?
+  totalPurchased  Decimal         @default(0) @db.Decimal(15, 2)
+  currentDebt     Decimal         @default(0) @db.Decimal(15, 2) // Công nợ phải trả NCC
+  paymentTerms    String?         // Gối đầu 30 ngày, Thanh toán ngay
+  notes           String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  purchaseOrders  PurchaseOrder[]
+}
+
+model PurchaseOrder {
+  id              String              @id @default(uuid())
+  poNumber        String              @unique
+  supplierId      String
+  supplier        Supplier            @relation(fields: [supplierId], references: [id])
+  staffId         String
+  staff           Staff               @relation(fields: [staffId], references: [id])
+  totalAmount     Decimal             @db.Decimal(15, 2)
+  status          String              @default("COMPLETED")
+  invoiceNumber   String?
+  note            String?
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  items           PurchaseOrderItem[]
+}
+
+model PurchaseOrderItem {
+  id              String        @id @default(uuid())
+  purchaseOrderId String
+  purchaseOrder   PurchaseOrder @relation(fields: [purchaseOrderId], references: [id], onDelete: Cascade)
+  productId       String
+  product         Product       @relation(fields: [productId], references: [id])
+  batchId         String?
+  batch           Batch?        @relation(fields: [batchId], references: [id])
+  batchNumber     String
+  expiryDate      DateTime
+  quantity        Decimal       @db.Decimal(10, 2)
+  unit            String
+  costPrice       Decimal       @db.Decimal(15, 2)
+  totalPrice      Decimal       @db.Decimal(15, 2)
+}
+
+// ----------------------------------------------------
+// 5. Orders & POS Checkout
+// ----------------------------------------------------
+model Order {
+  id                String          @id @default(uuid())
+  orderCode         String          @unique
+  customerId        String?
+  customer          Customer?       @relation(fields: [customerId], references: [id])
+  pondId            String?
+  pond              FarmPond?       @relation(fields: [pondId], references: [id])
+  cropDebtLedgerId  String?
+  cropDebtLedger    CropDebtLedger? @relation(fields: [cropDebtLedgerId], references: [id])
+  staffId           String
+  staff             Staff           @relation(fields: [staffId], references: [id])
+  subtotal          Decimal         @db.Decimal(15, 2)
+  discountAmount    Decimal         @default(0) @db.Decimal(15, 2)
+  vatAmount         Decimal         @default(0) @db.Decimal(15, 2)
+  totalAmount       Decimal         @db.Decimal(15, 2)
+  paymentMethod     PaymentMethod   @default(CASH)
+  paymentDetails    String?         // JSON details: VietQR txId, Cash received, Change given
+  status            OrderStatus     @default(COMPLETED)
+  notes             String?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  items             OrderItem[]
+}
+
+model OrderItem {
+  id              String        @id @default(uuid())
+  orderId         String
+  order           Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId       String
+  product         Product       @relation(fields: [productId], references: [id])
+  batchId         String?
+  batch           Batch?        @relation(fields: [batchId], references: [id])
+  unitName        String
+  quantity        Decimal       @db.Decimal(10, 2)
+  unitPrice       Decimal       @db.Decimal(15, 2)
+  discountPercent Decimal       @default(0) @db.Decimal(5, 2)
+  totalPrice      Decimal       @db.Decimal(15, 2)
+}
+
+// ----------------------------------------------------
+// 6. Cash Drawer & Shift Sessions
+// ----------------------------------------------------
+model ShiftSession {
+  id                String      @id @default(uuid())
+  shiftCode         String      @unique
+  staffId           String
+  staff             Staff       @relation(fields: [staffId], references: [id])
+  openedAt          DateTime    @default(now())
+  closedAt          DateTime?
+  openingCash       Decimal     @db.Decimal(15, 2)
+  expectedCash      Decimal     @default(0) @db.Decimal(15, 2)
+  actualCash        Decimal?    @db.Decimal(15, 2)
+  cashDifference    Decimal?    @db.Decimal(15, 2)
+  totalSalesCash    Decimal     @default(0) @db.Decimal(15, 2)
+  totalSalesQr      Decimal     @default(0) @db.Decimal(15, 2)
+  totalSalesDebt    Decimal     @default(0) @db.Decimal(15, 2)
+  totalOrdersCount  Int         @default(0)
+  status            ShiftStatus @default(OPEN)
+  notes             String?
+}
+
+// ----------------------------------------------------
+// 7. Water Lab Test & Aquaculture Prescriptions
+// ----------------------------------------------------
+model WaterTestPrescription {
+  id                String             @id @default(uuid())
+  prescriptionCode  String             @unique
+  customerId        String
+  customer          Customer           @relation(fields: [customerId], references: [id])
+  pondId            String?
+  pond              FarmPond?          @relation(fields: [pondId], references: [id])
+  technicianId      String
+  technician        Staff              @relation(fields: [technicianId], references: [id])
+  testDate          DateTime           @default(now())
+  ph                Decimal?           @db.Decimal(4, 2)
+  alkalinity        Decimal?           @db.Decimal(6, 2) // mg/L CaCO3
+  salinization      Decimal?           @db.Decimal(5, 2) // Độ mặn ppt
+  no2               Decimal?           @db.Decimal(5, 2) // mg/L
+  nh3               Decimal?           @db.Decimal(5, 2) // mg/L
+  h2s               Decimal?           @db.Decimal(5, 2) // mg/L
+  dissolvedO2       Decimal?           @db.Decimal(5, 2) // mg/L
+  tempC             Decimal?           @db.Decimal(4, 1)
+  symptoms          String?            // Triệu chứng tôm: lội bờ, gan teo, phân lỏng...
+  diagnosis         String?            // Chẩn đoán: Khí độc cấp tính, Gan tụy sớm
+  treatmentPlan     String?            // Hướng dẫn điều trị
+  status            PrescriptionStatus @default(DRAFT)
+  notes             String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+
+  items             PrescriptionItem[]
+}
+
+model PrescriptionItem {
+  id              String                @id @default(uuid())
+  prescriptionId  String
+  prescription    WaterTestPrescription @relation(fields: [prescriptionId], references: [id], onDelete: Cascade)
+  productId       String
+  product         Product               @relation(fields: [productId], references: [id])
+  unitName        String
+  quantity        Decimal               @db.Decimal(10, 2)
+  dosageMorning   String?               // 500g trộn 50kg cám
+  dosageNoon      String?
+  dosageAfternoon String?               // 1 chai tạt 1000m3 lúc 17h
+  daysDuration    Int                   @default(3)
+  instructions    String?
+}
+
+// ----------------------------------------------------
+// 8. Warranties (Serial / IMEI) & Transfers
+// ----------------------------------------------------
+model WarrantyRecord {
+  id              String          @id @default(uuid())
+  serialImei      String          @unique
+  productId       String
+  product         Product         @relation(fields: [productId], references: [id])
+  customerId      String?
+  customer        Customer?       @relation(fields: [customerId], references: [id])
+  orderId         String?
+  purchaseDate    DateTime        @default(now())
+  warrantyMonths  Int             @default(12)
+  expiryDate      DateTime
+  status          WarrantyStatus  @default(ACTIVE)
+  customerName    String?
+  customerPhone   String?
+  notes           String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+}
+
+model TransferOrder {
+  id              String              @id @default(uuid())
+  transferCode    String              @unique
+  fromWarehouse   String              // Kho Tổng Trung Tâm
+  toWarehouse     String              // Kho Vệ Tinh Bờ Ao Số 3
+  staffId         String
+  status          TransferStatus      @default(COMPLETED)
+  notes           String?
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  items           TransferOrderItem[]
+}
+
+model TransferOrderItem {
+  id              String        @id @default(uuid())
+  transferOrderId String
+  transferOrder   TransferOrder @relation(fields: [transferOrderId], references: [id], onDelete: Cascade)
+  productId       String
+  product         Product       @relation(fields: [productId], references: [id])
+  batchId         String?
+  batch           Batch?        @relation(fields: [batchId], references: [id])
+  quantity        Decimal       @db.Decimal(10, 2)
+  unit            String
+}
+
+// ----------------------------------------------------
+// 9. Dynamic Role Permissions & System Settings
+// ----------------------------------------------------
+model RolePermissionConfig {
+  id                  String    @id @default(uuid())
+  role                StaffRole @unique
+  allowedRoutes       Json      @default("[]") // Danh sách đường dẫn được truy cập
+  allowedActions      Json      @default("[]") // Danh sách quyền thao tác chi tiết
+  forbiddenActions    Json      @default("[]") // Danh sách tác vụ bị cấm
+  maxDiscountPercent  Decimal   @default(5.0) @db.Decimal(5, 2)
+  notes               String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model SystemSetting {
+  key                 String    @id
+  value               String    @db.Text
+  description         String?
+  updatedAt           DateTime  @updatedAt
+}
+

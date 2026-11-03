@@ -1,0 +1,727 @@
+<!DOCTYPE html><html lang="vi" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-tint":"#0053db","outline-variant":"#c3c6d7","tertiary-fixed-dim":"#ffb95f","tertiary":"#784b00","inverse-primary":"#b4c5ff","surface-container-lowest":"#ffffff","on-primary":"#ffffff","surface-container-highest":"#dae2fd","on-primary-container":"#eeefff","on-tertiary":"#ffffff","tertiary-container":"#996100","error-container":"#ffdad6","on-secondary-fixed-variant":"#005236","primary-fixed-dim":"#b4c5ff","surface":"#faf8ff","surface-container-low":"#f2f3ff","background":"#faf8ff","on-surface-variant":"#434655","surface-bright":"#faf8ff","on-error":"#ffffff","on-error-container":"#93000a","on-secondary-fixed":"#002113","on-secondary-container":"#00714d","on-tertiary-fixed":"#2a1700","surface-dim":"#d2d9f4","primary":"#004ac6","secondary-container":"#6cf8bb","error":"#ba1a1a","secondary":"#006c49","surface-variant":"#dae2fd","on-background":"#131b2e","on-tertiary-fixed-variant":"#653e00","on-primary-fixed-variant":"#003ea8","primary-fixed":"#dbe1ff","inverse-surface":"#283044","on-surface":"#131b2e","secondary-fixed-dim":"#4edea3","surface-container-high":"#e2e7ff","on-primary-fixed":"#00174b","surface-container":"#eaedff","outline":"#737686","primary-container":"#2563eb","on-secondary":"#ffffff","tertiary-fixed":"#ffddb8","inverse-on-surface":"#eef0ff","secondary-fixed":"#6ffbbe","on-tertiary-container":"#ffeedd"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"0.75rem","space-xl":"1.5rem","space-xs":"0.25rem","space-md":"0.75rem","space-lg":"1rem","space-sm":"0.5rem","gutter-md":"1rem","margin":"1rem","margin-md":"1.5rem"},"fontFamily":{"headline-sm":["Plus Jakarta Sans"],"label-md":["Inter"],"headline-md":["Plus Jakarta Sans"],"tabular-stat":["Inter"],"body-md":["Inter"],"body-lg":["Inter"],"body-sm":["Inter"],"label-sm":["Inter"],"display":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"]},"fontSize":{"headline-sm":["16px",{"lineHeight":"22px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-md":["20px",{"lineHeight":"26px","letterSpacing":"-0.02em","fontWeight":"700"}],"tabular-stat":["18px",{"lineHeight":"24px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"-0.006em","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"-0.011em","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.02em","fontWeight":"600"}],"display":["32px",{"lineHeight":"38px","letterSpacing":"-0.03em","fontWeight":"800"}],"headline-lg":["24px",{"lineHeight":"30px","letterSpacing":"-0.025em","fontWeight":"700"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased min-h-screen relative overflow-x-hidden"><aside class="fixed left-0 top-0 h-screen w-[240px] bg-[#0F172A] z-50 flex flex-col justify-between select-none shadow-[0_1px_8px_rgba(0,0,0,0.04)] inset-y-0 min-h-screen"><div class="flex flex-col flex-1"><div class="h-16 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-headline-sm text-headline-sm font-bold">O</div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-surface-container-lowest leading-none tracking-tight">OmniPOS</span><span class="font-label-sm text-label-sm text-outline-variant tracking-wider uppercase mt-0.5">Enterprise</span></div></div></div><nav class="px-space-sm py-space-sm flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-outline-variant hover:bg-white/5 hover:text-surface-container-lowest transition-colors font-label-md text-label-md" data-path="tong-quan" href="#dashboard"><span class="material-symbols-outlined text-[18px]">dashboard</span><span class="">Tổng quan</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-outline-variant hover:bg-white/5 hover:text-surface-container-lowest transition-colors font-label-md text-label-md" data-path="ban-tai-quay-pos" href="#pos"><span class="material-symbols-outlined text-[18px]">point_of_sale</span><span class="">Bán tại quầy (POS)</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-outline-variant hover:bg-white/5 hover:text-surface-container-lowest transition-colors font-label-md text-label-md" data-path="don-hang-doi-tra" href="#don-hang"><span class="material-symbols-outlined text-[18px]">receipt_long</span><span class="">Đơn hàng &amp; Đổi trả</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-outline-variant hover:bg-white/5 hover:text-surface-container-lowest transition-colors font-label-md text-label-md" data-path="san-pham-ton-kho" href="#san-pham"><span class="material-symbols-outlined text-[18px]">inventory_2</span><span class="">Sản phẩm &amp; Tồn kho</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-outline-variant hover:bg-white/5 hover:text-surface-container-lowest transition-colors font-label-md text-label-md" data-path="nhap-hang-kiem-ke" href="#nhap-hang"><span class="material-symbols-outlined text-[18px]">local_shipping</span><span class="">Nhập hàng &amp; Kiểm kê</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-outline-variant hover:bg-white/5 hover:text-surface-container-lowest transition-colors font-label-md text-label-md" data-path="quan-ly-khach-hang-crm-diem-thuong-loyalty" href="#khach-hang"><span class="material-symbols-outlined text-[18px]">groups</span><span class="">Khách hàng &amp; Loyalty</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-bold shadow-sm transition-colors font-label-md text-label-md" data-path="nhan-su-phan-quyen" href="#nhan-su"><span class="material-symbols-outlined text-[18px]">badge</span><span class="">Nhân sự &amp; Phân quyền</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-outline-variant hover:bg-white/5 hover:text-surface-container-lowest transition-colors font-label-md text-label-md" data-path="ca-lam-viec" href="#ca-lam-viec"><span class="material-symbols-outlined text-[18px]">schedule</span><span class="">Ca làm việc</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-outline-variant hover:bg-white/5 hover:text-surface-container-lowest transition-colors font-label-md text-label-md" data-path="bao-cao-lai-lo" href="#bao-cao"><span class="material-symbols-outlined text-[18px]">analytics</span><span class="">Báo cáo lãi lỗ</span></a></nav></div><div class="p-space-sm flex flex-col gap-1 pb-4"><nav data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-outline-variant hover:bg-white/10 hover:text-surface-container-lowest transition-colors font-label-md text-label-md" data-path="cai-dat-he-thong" href="#cai-dat" title="Cài đặt hệ thống &amp; Mẫu in K80"><span class="material-symbols-outlined text-[18px]">settings</span><span class="">Cài đặt hệ thống</span></a></nav><div class="flex items-center gap-space-sm p-space-sm rounded-lg bg-white/5 mt-1"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col min-w-0 flex-1"><span class="font-label-md text-label-md text-surface-container-lowest truncate">Minh Anh</span><span class="font-body-sm text-body-sm text-outline-variant truncate">Quản trị viên</span></div><span class="material-symbols-outlined text-outline-variant text-[18px]">unfold_more</span></div></div></aside><div class="pl-[240px] min-h-screen flex flex-col"><header class="fixed top-0 left-[240px] right-0 z-40 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-surface-container/60"><div class="h-16 px-margin-md flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer"><span class="material-symbols-outlined text-primary text-[20px]">storefront</span><span class="font-label-md text-label-md text-on-surface font-semibold">Chi nhánh Quận 1</span><span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span></div><div class="flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary font-medium">Đã đồng bộ (0ms)</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm"><a class="flex items-center gap-space-xs px-space-md h-9 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors shadow-[0_1px_8px_rgba(0,0,0,0.04)] font-label-md text-label-md cursor-pointer" href="#search" title="Tra cứu mã vạch hoặc thông tin đơn hàng / nhân viên"><span class="material-symbols-outlined text-primary text-[18px]">qr_code_scanner</span><span class="">Quét mã / Tìm kiếm</span></a><a class="flex items-center gap-space-xs px-space-md h-9 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-md text-label-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] cursor-pointer" href="#pos" title="Mở giao diện bán hàng POS"><span class="material-symbols-outlined text-on-primary text-[18px]">add</span><span class="">+ Tạo đơn mới</span></a></div><div class="flex items-center gap-space-xs"><button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors relative" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error"></span></button><button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">help</span></button></div><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary"><span class="material-symbols-outlined text-[18px]">person</span></div><span class="font-label-md text-label-md text-on-surface font-semibold hidden md:inline">Minh Anh</span></div></div></div></header><main class="w-full pt-16 bg-surface flex-1"><div class="flex flex-col w-full relative">
+<style>
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+  </style>
+<!-- Context Header & System Breadcrumbs -->
+<div class="px-margin-md pt-space-lg pb-space-md flex flex-wrap items-center justify-between gap-space-md border-b border-surface-container">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm">
+<span class="hover:text-primary cursor-pointer transition-colors">Hệ thống</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Cấu hình bảo mật</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Nhân sự &amp; Phân quyền POS</span>
+</div>
+<div class="flex items-center gap-space-sm mt-1">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Quản lý Nhân sự &amp; Phân quyền POS</h1>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container/30 text-on-secondary-container font-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+          RBAC Active
+        </span>
+</div>
+</div>
+<!-- Right Header Actions -->
+<div class="flex items-center gap-space-sm">
+<div class="hidden xl:flex items-center gap-2 px-space-md py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant font-label-md">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span>
+<span class="">Chính sách: <strong class="text-on-surface">Tuân thủ PCI-DSS / POS v2.4</strong></span>
+</div>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container text-on-surface font-label-md hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span class="">Nhật ký truy cập</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-primary-container text-on-primary font-label-md hover:opacity-95 shadow-sm transition-all" onclick="toggleDrawer(true)">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+<span class="">+ Thêm nhân viên mới</span>
+</button>
+</div>
+</div>
+<!-- Primary Content Area: 100% Full Width -->
+<div class="px-margin-md py-space-lg flex flex-col gap-space-lg w-full">
+<!-- 4 Top Executive KPI Cards (Full Width 4 columns) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md w-full">
+<!-- KPI 1: Active Staff -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-surface-container/60 flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Tổng nhân sự vận hành</span>
+<span class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+</span>
+</div>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="font-display text-display text-on-surface font-bold leading-none">12</span>
+<span class="font-body-sm text-on-surface-variant">nhân viên</span>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container-low flex items-center gap-1.5 text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">domain</span>
+<span class="">3 Chi nhánh: Q1, Q7, Bình Thạnh</span>
+</div>
+</div>
+<!-- KPI 2: Active Shift -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-secondary-container/50 flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden bg-gradient-to-br from-surface-container-lowest via-secondary-container/10 to-surface-container-lowest">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-on-secondary-container uppercase tracking-wider font-semibold">Đang trong ca trực (Active)</span>
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
+</span>
+</div>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="font-display text-display text-secondary font-bold leading-none">06</span>
+<span class="font-label-md text-secondary font-semibold">trực tuyến</span>
+</div>
+<div class="mt-3 pt-2.5 border-t border-secondary-container/30 flex items-center justify-between text-on-surface font-label-sm">
+<span class="">4 Thu ngân</span>
+<span class="text-outline-variant">•</span>
+<span class="">2 Thủ kho</span>
+<span class="inline-flex px-1.5 py-0.5 rounded bg-secondary/10 text-secondary font-mono text-[11px] font-semibold">POS #01-#04</span>
+</div>
+</div>
+<!-- KPI 3: Top Performer Monthly -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-surface-container/60 flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Doanh số cao nhất tháng</span>
+<span class="w-9 h-9 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</span>
+</div>
+<div class="mt-3">
+<div class="font-headline-md text-headline-md text-on-surface font-bold truncate">Minh Anh</div>
+<div class="font-tabular-stat text-tabular-stat text-primary font-bold mt-0.5">142.500.000₫</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container-low flex items-center justify-between text-on-surface-variant font-label-sm">
+<span class="">Ca Sáng • CN Quận 1</span>
+<span class="text-secondary font-semibold">312 đơn</span>
+</div>
+</div>
+<!-- KPI 4: Total Commission -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-surface-container/60 flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Hoa hồng tạm tính (T10)</span>
+<span class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</span>
+</div>
+<div class="mt-3 flex items-baseline gap-2">
+<span class="font-tabular-stat text-tabular-stat text-on-surface font-bold text-[22px]">8.450.000₫</span>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container-low flex items-center justify-between text-on-surface-variant font-label-sm">
+<span class="inline-flex items-center text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +15.4%
+            </span>
+<span class="text-outline">so với tháng 09</span>
+</div>
+</div>
+</div>
+<!-- Staff Directory Table Area (Full Width & Expansive) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container/70 overflow-hidden flex flex-col w-full">
+<!-- Table Control Toolbar -->
+<div class="p-space-md flex flex-wrap items-center justify-between gap-space-md border-b border-surface-container-low">
+<div class="flex flex-wrap items-center gap-space-sm flex-1">
+<!-- Search Input -->
+<div class="relative min-w-[280px] max-w-md flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-[18px]">search</span>
+<input class="w-full h-10 pl-9 pr-3 rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline-variant font-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container" placeholder="Tìm theo tên, mã NV, SĐT..." type="text">
+</div>
+<!-- Branch Filter Select -->
+<div class="relative">
+<select class="h-10 pl-3 pr-8 rounded-lg bg-surface-container-low text-on-surface font-label-md appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container">
+<option>Chi nhánh: Tất cả (3 kho)</option>
+<option>Chi nhánh Quận 1 (Trụ sở)</option>
+<option>Chi nhánh Quận 7</option>
+<option>Chi nhánh Bình Thạnh</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+</div>
+<!-- Role Filter Select -->
+<div class="relative">
+<select class="h-10 pl-3 pr-8 rounded-lg bg-surface-container-low text-on-surface font-label-md appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container">
+<option>Vai trò: Tất cả chức danh</option>
+<option>👑 Quản lý cửa hàng (Store Manager)</option>
+<option>💳 Thu ngân (Cashier POS)</option>
+<option>📦 Thủ kho (Inventory Clerk)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Quick Metrics & View Toggle & Add Button -->
+<div class="flex items-center gap-space-sm text-on-surface-variant font-label-sm">
+<span class="">Hiển thị <strong>5</strong> / 12 nhân sự</span>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-surface-container transition-colors text-on-surface" title="Tải lại danh sách">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-surface-container transition-colors text-on-surface" title="Xuất file Excel RBAC">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-sm font-semibold hover:opacity-90 shadow-sm transition-all" onclick="toggleDrawer(true)">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span class="">Thêm NV</span>
+</button>
+</div>
+</div>
+<!-- Ledger Table (Wide layout) -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse min-w-[960px]">
+<thead>
+<tr class="bg-surface-container-low/80 text-on-surface-variant font-label-sm uppercase tracking-wider text-[11px] border-b border-surface-container">
+<th class="py-3.5 px-space-md">Nhân sự / Liên hệ</th>
+<th class="py-3.5 px-space-md">Vai trò hệ thống</th>
+<th class="py-3.5 px-space-md">Chi nhánh / Kho phụ trách</th>
+<th class="py-3.5 px-space-md">Mã PIN máy POS</th>
+<th class="py-3.5 px-space-md text-right">Doanh số POS (T10)</th>
+<th class="py-3.5 px-space-md text-center">Trạng thái</th>
+<th class="py-3.5 px-space-md text-center">Hành động</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low font-body-sm">
+<!-- Row 1: Active Highlighted (Minh Anh) -->
+<tr class="hover:bg-primary/[0.04] transition-colors group cursor-pointer" onclick="selectStaff('NV-001')">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary font-headline-sm flex items-center justify-center font-bold text-[14px] shrink-0 shadow-sm">
+                      MA
+                    </div>
+<div class="flex flex-col min-w-0">
+<div class="font-label-md text-on-surface font-bold flex items-center gap-1.5">
+<span class="">Nguyễn Minh Anh</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] bg-primary text-on-primary font-mono font-medium">BẠN</span>
+</div>
+<div class="text-[12px] text-on-surface-variant font-mono">NV-001 • 0908.111.222</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">point_of_sale</span>
+                    Thu ngân chính
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-on-surface font-label-md">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-[16px]">storefront</span>
+<span class="">Chi nhánh Quận 1</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-mono font-semibold text-[12px]">
+<span class="material-symbols-outlined text-secondary text-[16px]">lock</span>
+<span class="">Đã cấp PIN (6 số)</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right font-tabular-stat text-on-surface font-bold tabular-nums">
+                  142.500.000₫
+                </td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                    Đang mở ca #01
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-center" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" onclick="selectStaff('NV-001')" title="Chỉnh sửa phân quyền">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" onclick="selectStaff('NV-001')" title="Đổi mã PIN POS">
+<span class="material-symbols-outlined text-[18px]">password</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-error-container/40 text-on-surface-variant hover:text-error transition-colors" title="Khóa tài khoản">
+<span class="material-symbols-outlined text-[18px]">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Le Hoang Nam (Manager) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors cursor-pointer" onclick="selectStaff('NV-002')">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-inverse-surface text-inverse-on-surface font-headline-sm flex items-center justify-center font-bold text-[14px] shrink-0">
+                      HN
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-on-surface font-bold">Lê Hoàng Nam</span>
+<span class="text-[12px] text-on-surface-variant font-mono">NV-002 • 0903.444.555</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#EDE9FE] text-[#6D28D9] font-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">shield_person</span>
+                    Quản lý cửa hàng
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-on-surface font-label-md">
+<span class="inline-flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-outline text-[16px]">hub</span>
+                    Toàn hệ thống (3 kho)
+                  </span>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-mono font-semibold text-[12px]">
+<span class="material-symbols-outlined text-secondary text-[16px]">lock</span>
+<span class="">Đã cấp PIN (6 số)</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right font-tabular-stat text-on-surface font-bold tabular-nums">
+                  65.000.000₫
+                </td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-outline font-label-sm">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+                    Đang ngoại tuyến
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-center" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" onclick="selectStaff('NV-002')" title="Chỉnh sửa phân quyền">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" onclick="selectStaff('NV-002')" title="Đổi mã PIN POS">
+<span class="material-symbols-outlined text-[18px]">password</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-error-container/40 text-on-surface-variant hover:text-error transition-colors" title="Khóa tài khoản">
+<span class="material-symbols-outlined text-[18px]">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Tran Quoc Bao (Stockkeeper) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors cursor-pointer" onclick="selectStaff('NV-003')">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary-container font-headline-sm flex items-center justify-center font-bold text-[14px] shrink-0">
+                      QB
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-on-surface font-bold">Trần Quốc Bảo</span>
+<span class="text-[12px] text-on-surface-variant font-mono">NV-003 • 0912.777.888</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">inventory_2</span>
+                    Thủ kho
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-on-surface font-label-md">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-[16px]">warehouse</span>
+<span class="">Kho Tổng Quận 1</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="text-outline-variant font-label-sm italic">Không dùng POS</span>
+</td>
+<td class="py-3.5 px-space-md text-right font-mono text-outline-variant">
+                  —
+                </td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/30 text-on-secondary-container font-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                    Đang hoạt động
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-center" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" onclick="selectStaff('NV-003')" title="Chỉnh sửa phân quyền">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" onclick="selectStaff('NV-003')" title="Cấp quyền POS">
+<span class="material-symbols-outlined text-[18px]">security</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-error-container/40 text-on-surface-variant hover:text-error transition-colors" title="Khóa tài khoản">
+<span class="material-symbols-outlined text-[18px]">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Pham Thao Vy (New Cashier - Pending PIN) -->
+<tr class="bg-amber-500/5 hover:bg-amber-500/10 transition-colors cursor-pointer" onclick="toggleDrawer(true)">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary font-headline-sm flex items-center justify-center font-bold text-[14px] shrink-0 ring-2 ring-amber-400">
+                      TV
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-on-surface font-bold">Phạm Thảo Vy</span>
+<span class="text-[12px] text-on-surface-variant font-mono">NV-008 • 0987.654.321</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">point_of_sale</span>
+                    Thu ngân
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-on-surface font-label-md">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-[16px]">storefront</span>
+<span class="">Chi nhánh Quận 1</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-[#FEF3C7] text-[#D97706] font-mono font-semibold text-[12px]">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span class="">Chờ kích hoạt PIN</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right font-tabular-stat text-outline-variant font-bold tabular-nums">
+                  0₫
+                </td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FEF3C7] text-[#B45309] font-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    Nhân viên mới
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-center" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1.5">
+<button class="px-2.5 py-1 rounded-md bg-primary-container text-on-primary font-label-sm font-semibold hover:opacity-90 transition-opacity" onclick="toggleDrawer(true)">
+                    Cấp mã PIN
+                  </button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" onclick="toggleDrawer(true)" title="Chỉnh sửa">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Dang Huu Tai (Clerk) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors cursor-pointer" onclick="selectStaff('NV-005')">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface font-headline-sm flex items-center justify-center font-bold text-[14px] shrink-0">
+                      HT
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-on-surface font-bold">Đặng Hữu Tài</span>
+<span class="text-[12px] text-on-surface-variant font-mono">NV-005 • 0933.222.111</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">inventory_2</span>
+                    Thủ kho
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-on-surface font-label-md">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-[16px]">storefront</span>
+<span class="">Chi nhánh Quận 7</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="text-outline-variant font-label-sm italic">Không dùng POS</span>
+</td>
+<td class="py-3.5 px-space-md text-right font-mono text-outline-variant">
+                  —
+                </td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/30 text-on-secondary-container font-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                    Đang hoạt động
+                  </span>
+</td>
+<td class="py-3.5 px-space-md text-center" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" onclick="selectStaff('NV-005')" title="Chỉnh sửa phân quyền">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" onclick="selectStaff('NV-005')" title="Cấp quyền POS">
+<span class="material-symbols-outlined text-[18px]">security</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-error-container/40 text-on-surface-variant hover:text-error transition-colors" title="Khóa tài khoản">
+<span class="material-symbols-outlined text-[18px]">block</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination & Audit Footer -->
+<div class="p-space-md flex flex-wrap items-center justify-between gap-space-sm border-t border-surface-container-low text-on-surface-variant font-label-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">lock_reset</span>
+<span class="">Mã PIN quầy POS được băm 2 lớp (Bcrypt 12 rounds) &amp; tự động khóa sau 5 lần gõ sai.</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-3 py-1 rounded bg-surface-container-low hover:bg-surface-container transition-colors disabled:opacity-40" disabled="">Trang trước</button>
+<span class="px-2 font-mono font-semibold text-on-surface">1</span>
+<button class="px-3 py-1 rounded bg-surface-container-low hover:bg-surface-container transition-colors">Trang kế</button>
+</div>
+</div>
+</div>
+</div>
+<!-- MODAL / SLIDE-OVER DRAWER COMPONENT (DEFAULT HIDDEN WITH BACKDROP) -->
+<div class="fixed inset-0 z-50 transition-opacity duration-300 opacity-0 pointer-events-none" id="drawerContainer">
+<!-- Backdrop Overlay -->
+<div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm cursor-pointer" onclick="toggleDrawer(false)"></div>
+<!-- Sliding Panel Container -->
+<div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+<div class="w-screen max-w-[500px] bg-surface-container-lowest shadow-2xl flex flex-col transform transition-transform duration-300 ease-in-out border-l border-outline-variant/30 translate-x-full" id="slideOverDrawer">
+<!-- Drawer Header -->
+<div class="p-space-lg bg-surface-container-low/70 border-b border-surface-container flex items-start justify-between gap-space-md shrink-0">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Thêm nhân viên mới</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+            Tạo tài khoản đăng nhập hệ thống và cấp mã PIN mở ca tại máy POS
+          </p>
+</div>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" onclick="toggleDrawer(false)" title="Đóng ngăn kéo">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Drawer Scrollable Body Content -->
+<div class="p-space-lg flex flex-col gap-space-lg overflow-y-auto flex-1">
+<!-- SECTION 1: Basic Information -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center gap-2 pb-1 border-b border-surface-container">
+<span class="material-symbols-outlined text-primary text-[18px]">account_box</span>
+<h3 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">Phần 1: Thông tin cơ bản &amp; Chi nhánh</h3>
+</div>
+<!-- Full Name -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold">Họ và tên nhân sự <span class="text-error">*</span></label>
+<input class="h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-label-md focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container outline-none border border-transparent focus:border-primary-container" type="text" value="Phạm Thảo Vy">
+</div>
+<!-- Two-col: Phone & Staff Code -->
+<div class="grid grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold">Số điện thoại (Login) <span class="text-error">*</span></label>
+<input class="h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-mono font-medium text-[13px] focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container outline-none border border-transparent focus:border-primary-container" type="tel" value="0987654321">
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold">Mã nhân viên (Mã ID) <span class="text-error">*</span></label>
+<input class="h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-mono font-semibold text-[13px] focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container outline-none border border-transparent focus:border-primary-container" type="text" value="NV-008">
+</div>
+</div>
+<!-- Role Select -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold">Vai trò hệ thống (Role) <span class="text-error">*</span></label>
+<div class="relative">
+<select class="w-full h-10 pl-3 pr-8 rounded-lg bg-surface-container-low text-on-surface font-label-md appearance-none cursor-pointer focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container outline-none border border-transparent">
+<option selected="">💳 Thu ngân (Cashier - Bán lẻ &amp; Thu tiền)</option>
+<option>👑 Quản lý cửa hàng (Store Manager - Toàn quyền chi nhánh)</option>
+<option>📦 Thủ kho (Inventory Clerk - Nhập xuất &amp; Kiểm kê)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Accessible Branches -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold">Chi nhánh được phép truy cập</label>
+<div class="flex flex-wrap items-center gap-1.5 p-2 rounded-lg bg-surface-container-low min-h-[44px]">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-lowest text-primary font-label-sm shadow-sm border border-surface-container">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                Chi nhánh Quận 1
+                <button class="hover:text-error ml-1 font-bold">✕</button>
+</span>
+<button class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-on-surface-variant hover:text-primary font-label-sm text-[12px] hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[14px]">add</span>
+                Thêm chi nhánh
+              </button>
+</div>
+</div>
+</div>
+<!-- SECTION 2: POS Quick Unlock PIN -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center gap-2 pb-1 border-b border-surface-container">
+<span class="material-symbols-outlined text-primary text-[18px]">dialpad</span>
+<h3 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">Phần 2: Cấu hình mã PIN Máy POS Touchscreen</h3>
+</div>
+<!-- Dark Slate Bento Box for PIN Generation -->
+<div class="p-space-lg rounded-xl bg-[#0F172A] text-white flex flex-col gap-space-md shadow-lg relative overflow-hidden">
+<div class="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-primary-container/20 blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px]">pin</span>
+<span class="font-label-md text-white font-bold tracking-tight">Mã PIN 6 số mở máy &amp; duyệt ca</span>
+</div>
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-white/10 hover:bg-white/20 text-[#6FFBBE] font-label-sm text-[12px] transition-colors border border-white/10" onclick="randomizePIN()" type="button">
+<span class="material-symbols-outlined text-[14px]">casino</span>
+                Sinh ngẫu nhiên
+              </button>
+</div>
+<!-- Visual 6-Digit PIN Display -->
+<div class="flex items-center justify-center gap-2.5 py-2">
+<div class="w-12 h-14 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center font-display text-[26px] font-bold text-white shadow-inner" id="pin-1">8</div>
+<div class="w-12 h-14 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center font-display text-[26px] font-bold text-white shadow-inner" id="pin-2">6</div>
+<div class="w-12 h-14 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center font-display text-[26px] font-bold text-white shadow-inner" id="pin-3">8</div>
+<div class="w-12 h-14 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center font-display text-[26px] font-bold text-white shadow-inner" id="pin-4">6</div>
+<div class="w-12 h-14 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center font-display text-[26px] font-bold text-white/40 shadow-inner" id="pin-5">•</div>
+<div class="w-12 h-14 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center font-display text-[26px] font-bold text-white/40 shadow-inner" id="pin-6">•</div>
+</div>
+<div class="flex items-start gap-2 bg-white/5 p-2.5 rounded-lg border border-white/10">
+<span class="material-symbols-outlined text-outline-variant text-[16px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-[12px] text-outline-variant leading-relaxed">
+                Nhân viên dùng mã PIN này để chạm mở ca nhanh tại <strong>Màn hình khóa POS</strong> mà không cần gõ mật khẩu dài. Có thể đồng bộ ngay tức thì.
+              </p>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Guardrails -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center gap-2 pb-1 border-b border-surface-container">
+<span class="material-symbols-outlined text-primary text-[18px]">gavel</span>
+<h3 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">Phần 3: Giới hạn quyền hạn đặc thù (Guardrails)</h3>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Guardrail 1: Cost Price Lock -->
+<label class="flex items-start justify-between gap-space-md p-space-sm rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer border border-surface-container">
+<div class="flex flex-col pr-2">
+<span class="font-label-md text-on-surface font-bold">Chặn xem Giá vốn bình quân (MAC) &amp; Lãi gộp</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Ẩn cột giá nhập trên toàn bộ giao diện bán hàng POS và tra cứu kho</span>
+</div>
+<input checked="" class="mt-1 h-5 w-5 rounded text-primary focus:ring-primary accent-primary cursor-pointer shrink-0" type="checkbox">
+</label>
+<!-- Guardrail 2: Blind Stocktake Only -->
+<label class="flex items-start justify-between gap-space-md p-space-sm rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer border border-surface-container">
+<div class="flex flex-col pr-2">
+<span class="font-label-md text-on-surface font-bold">Kiểm kê mù (Blind Stocktake Only)</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Không hiển thị số lượng tồn sổ sách khi đang đếm kho, tránh gian lận số liệu</span>
+</div>
+<input checked="" class="mt-1 h-5 w-5 rounded text-primary focus:ring-primary accent-primary cursor-pointer shrink-0" type="checkbox">
+</label>
+<!-- Guardrail 3: Max Discount Limit -->
+<div class="p-space-sm rounded-lg bg-surface-container-low/60 border border-surface-container flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-on-surface font-bold">Giới hạn tự giảm giá đơn hàng tại POS</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-secondary font-semibold">
+<span class="material-symbols-outlined text-[14px]">shield</span> Bảo vệ biên lợi nhuận
+                </span>
+</div>
+<div class="flex items-center justify-between gap-space-md">
+<span class="font-body-sm text-[12px] text-on-surface-variant">Vượt mức này bắt buộc quản lý quét mã PIN bảo mật</span>
+<div class="flex items-center gap-1.5 shrink-0">
+<span class="font-label-sm text-on-surface-variant">Tối đa:</span>
+<div class="relative w-20">
+<input class="w-full h-8 px-2 pr-6 rounded-md bg-surface-container-lowest text-right font-mono font-bold text-on-surface text-[13px] border border-outline-variant focus:outline-none focus:ring-2 focus:ring-primary" max="100" min="0" type="number" value="5">
+<span class="absolute right-2 top-1/2 -translate-y-1/2 font-bold text-on-surface-variant text-[12px]">%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Guardrail 4: Void Bill Restriction -->
+<label class="flex items-start justify-between gap-space-md p-space-sm rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer border border-surface-container">
+<div class="flex flex-col pr-2">
+<span class="font-label-md text-on-surface font-bold">Cho phép tự hủy hóa đơn (Void Order)</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Hủy bill sau khi đã in mà không cần phê duyệt từ Quản lý cửa hàng</span>
+</div>
+<input class="mt-1 h-5 w-5 rounded text-primary focus:ring-primary accent-primary cursor-pointer shrink-0" type="checkbox">
+</label>
+</div>
+</div>
+<!-- SECTION 4: Commission Policy -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center gap-2 pb-1 border-b border-surface-container">
+<span class="material-symbols-outlined text-primary text-[18px]">percent</span>
+<h3 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">Phần 4: Hoa hồng &amp; Thưởng doanh số</h3>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-2">
+<label class="font-label-sm text-on-surface font-semibold">Chính sách thưởng doanh số cá nhân (POS Commission)</label>
+<div class="flex items-center gap-space-sm">
+<div class="relative flex-1">
+<select class="w-full h-9 pl-3 pr-8 rounded-lg bg-surface-container-lowest text-on-surface font-label-md appearance-none cursor-pointer focus:ring-2 focus:ring-primary outline-none">
+<option selected="">Hưởng 1.5% trên doanh thu thuần cá nhân</option>
+<option>Hưởng 2.0% trên đơn hàng khách mới (New CRM)</option>
+<option>Định mức cố định: 5.000đ / sản phẩm chủ lực</option>
+<option>Không áp dụng hoa hồng</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+</div>
+<span class="font-mono font-bold text-primary text-[14px] bg-primary/10 px-2.5 py-1.5 rounded-lg">1.50%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Drawer Footer Controls -->
+<div class="p-space-md bg-surface-container-lowest border-t border-surface-container flex items-center justify-between gap-space-md shrink-0">
+<button class="px-space-lg py-2.5 rounded-lg bg-surface-container text-on-surface font-label-md hover:bg-surface-container-high transition-colors" onclick="toggleDrawer(false)" type="button">
+          Hủy bỏ
+        </button>
+<button class="flex-1 flex items-center justify-center gap-space-xs px-space-lg py-2.5 rounded-lg bg-secondary text-on-secondary font-label-md font-bold hover:bg-opacity-90 shadow-md transition-all" onclick="saveStaffProfile()" type="button">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="">Lưu &amp; Cấp mã PIN máy POS</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive JavaScript Handling Smooth Slide-Over Drawer -->
+<script>
+    function toggleDrawer(open) {
+      const container = document.getElementById('drawerContainer');
+      const drawer = document.getElementById('slideOverDrawer');
+      if (!container || !drawer) return;
+      
+      if (open) {
+        container.classList.remove('pointer-events-none', 'opacity-0');
+        container.classList.add('opacity-100');
+        drawer.classList.remove('translate-x-full');
+        drawer.classList.add('translate-x-0');
+        document.body.style.overflow = 'hidden';
+      } else {
+        drawer.classList.remove('translate-x-0');
+        drawer.classList.add('translate-x-full');
+        container.classList.remove('opacity-100');
+        container.classList.add('opacity-0');
+        setTimeout(() => {
+          container.classList.add('pointer-events-none');
+          document.body.style.overflow = '';
+        }, 300);
+      }
+    }
+
+    function randomizePIN() {
+      const digits = Array.from({ length: 6 }, () => Math.floor(Math.random() * 10));
+      for (let i = 1; i <= 6; i++) {
+        const el = document.getElementById(`pin-${i}`);
+        if (el) {
+          el.innerText = digits[i - 1];
+          el.classList.remove('text-white/40');
+          el.classList.add('text-secondary-fixed');
+        }
+      }
+    }
+
+    function selectStaff(code) {
+      toggleDrawer(true);
+    }
+
+    function saveStaffProfile() {
+      const btn = event.currentTarget;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> Đang đồng bộ...`;
+      setTimeout(() => {
+        btn.innerHTML = `<span class="material-symbols-outlined text-[18px]">done_all</span> Đã cấp thành công!`;
+        btn.classList.remove('bg-secondary');
+        btn.classList.add('bg-primary-container');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('bg-primary-container');
+          btn.classList.add('bg-secondary');
+          toggleDrawer(false);
+        }, 1000);
+      }, 700);
+    }
+
+    // Escape key listener to close drawer
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        toggleDrawer(false);
+      }
+    });
+  </script>
+</div></main></div>
+
+
+
+</body></html>

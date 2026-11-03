@@ -1,0 +1,556 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><title>OmniPOS Terminal</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"surface-container-high":"#e2e7ff","surface-tint":"#0053db","on-secondary-container":"#00714d","surface-container-highest":"#dae2fd","on-error-container":"#93000a","outline":"#737686","on-surface":"#131b2e","tertiary-container":"#996100","inverse-primary":"#b4c5ff","surface":"#faf8ff","inverse-surface":"#283044","on-primary":"#ffffff","surface-dim":"#d2d9f4","on-tertiary":"#ffffff","surface-container":"#eaedff","secondary-fixed-dim":"#4edea3","on-secondary":"#ffffff","surface-container-low":"#f2f3ff","inverse-on-surface":"#eef0ff","secondary":"#006c49","surface-container-lowest":"#ffffff","primary-container":"#2563eb","surface-bright":"#faf8ff","on-primary-fixed-variant":"#003ea8","secondary-fixed":"#6ffbbe","on-tertiary-container":"#ffeedd","primary-fixed":"#dbe1ff","background":"#faf8ff","tertiary":"#784b00","primary-fixed-dim":"#b4c5ff","on-secondary-fixed-variant":"#005236","tertiary-fixed":"#ffddb8","secondary-container":"#6cf8bb","error":"#ba1a1a","on-background":"#131b2e","on-secondary-fixed":"#002113","on-tertiary-fixed":"#2a1700","on-primary-container":"#eeefff","on-tertiary-fixed-variant":"#653e00","outline-variant":"#c3c6d7","primary":"#004ac6","surface-variant":"#dae2fd","on-error":"#ffffff","on-primary-fixed":"#00174b","on-surface-variant":"#434655","error-container":"#ffdad6","tertiary-fixed-dim":"#ffb95f"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter-md":"1rem","space-sm":"0.5rem","space-xl":"1.5rem","gutter":"0.75rem","margin-md":"1.5rem","space-lg":"1rem","space-xs":"0.25rem","space-md":"0.75rem","margin":"1rem"},"fontFamily":{"headline-sm":["Plus Jakarta Sans"],"body-md":["Inter"],"body-lg":["Inter"],"body-sm":["Inter"],"headline-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-sm":["Inter"],"label-md":["Inter"],"display":["Plus Jakarta Sans"],"tabular-stat":["Inter"]},"fontSize":{"headline-sm":["16px",{"lineHeight":"22px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"-0.006em","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"-0.011em","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"headline-lg":["24px",{"lineHeight":"30px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-md":["20px",{"lineHeight":"26px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.02em","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","letterSpacing":"-0.005em","fontWeight":"600"}],"display":["32px",{"lineHeight":"38px","letterSpacing":"-0.03em","fontWeight":"800"}],"tabular-stat":["18px",{"lineHeight":"24px","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased select-none overflow-x-hidden"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-[#0F172A] text-white shadow-[0_1px_8px_rgba(0,0,0,0.12)]"><div class="h-14 w-full px-space-md flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md shrink-0"><a href="#dashboard" class="flex items-center gap-space-xs font-headline-sm text-white tracking-tight hover:opacity-90 transition-opacity"><span class="material-symbols-outlined text-primary-fixed text-[22px]">point_of_sale</span><span class="font-headline-md text-headline-sm text-white">OmniPOS</span></a><div class="flex items-center gap-space-xs px-space-sm py-1 bg-white/10 rounded-lg text-white/90 text-label-sm"><span class="material-symbols-outlined text-[14px] text-primary-fixed">location_on</span><span class="">Chi nhánh Quận 1</span><span class="material-symbols-outlined text-[14px] text-white/50">expand_more</span></div></div><nav class="flex items-center gap-space-xs overflow-x-auto flex-1 max-w-xl mx-auto px-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a aria-current="page" class="flex items-center gap-space-xs px-space-md py-1.5 transition-colors whitespace-nowrap bg-primary-container text-on-primary font-bold rounded-lg" data-path="pos-terminal-order-1" href="#"><span class="">Đơn #1 (4 món)</span><span class="px-1.5 py-0.5 rounded bg-black/30 text-label-sm text-primary-fixed">F1</span></a><a class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-white/10 hover:text-white transition-colors text-label-md whitespace-nowrap" data-path="pos-terminal-order-2" href="#"><span class="">Đơn #2 - Khách giữ đồ</span><span class="px-1.5 py-0.5 rounded bg-black/30 text-label-sm text-white/60">F2</span></a><button class="flex items-center gap-1 px-space-sm py-1.5 rounded-lg text-white/70 hover:bg-white/10 hover:text-white transition-colors text-label-sm whitespace-nowrap" type="button"><span class="material-symbols-outlined text-[16px]">add</span><span class="">Tạo đơn mới</span><span class="px-1 py-0.2 rounded bg-black/30 text-[10px] text-white/50">F3</span></button></nav><div class="flex items-center gap-space-sm shrink-0"><div class="flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-secondary/30 text-secondary-fixed text-label-sm"><span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span><span class="">Đã đồng bộ (0ms)</span></div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-white/5 rounded-lg text-white/80 text-label-sm"><span class="material-symbols-outlined text-[16px] text-primary-fixed-dim">badge</span><span class="">Ca sáng: Minh Anh</span><span class="text-white/30">•</span><span class="font-tabular-stat text-tabular-stat text-white/90 text-[13px]">4.250.000₫</span></div><a href="#dashboard" class="px-space-sm py-1.5 bg-white/10 hover:bg-white/20 text-white rounded-lg text-label-sm transition-colors font-medium flex items-center gap-1 shrink-0" title="Quay về Quản trị"><span class="material-symbols-outlined text-[16px] text-primary-fixed">dashboard</span><span class="hidden xl:inline">Quản trị</span></a><a href="#shifts" class="px-space-md py-1.5 bg-error/90 hover:bg-error text-on-error rounded-lg text-label-sm transition-colors font-medium flex items-center gap-1 shrink-0"><span class="material-symbols-outlined text-[16px]">logout</span><span class="">Kết ca</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-14 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="h-[calc(100vh-56px)] flex overflow-hidden bg-surface-container font-body-md text-on-surface antialiased select-none">
+<!-- LEFT PANEL: CATALOG & FAST SCANNER (62% WIDTH) -->
+<section class="w-[62%] flex flex-col h-full bg-surface-container-low shadow-[inset_-1px_0_0_0_rgba(115,118,134,0.18)]">
+<!-- 1. Top Search & Barcode Bar -->
+<div class="p-space-md bg-surface-container-lowest shadow-sm flex items-center gap-space-md z-10">
+<div class="flex-1 relative flex items-center">
+<div class="absolute left-3.5 flex items-center pointer-events-none text-surface-tint">
+<span class="material-symbols-outlined text-[22px]">barcode_scanner</span>
+</div>
+<input class="w-full h-11 pl-11 pr-28 rounded-lg bg-surface-container-lowest text-on-surface text-body-md placeholder:text-outline focus:outline-none shadow-[0_0_0_2px_#004ac6,0_0_12px_rgba(0,74,198,0.2)] transition-all font-body-md" id="barcode-input" placeholder="Quét mã vạch (Barcode) hoặc tìm tên, SKU sản phẩm... [F4]" type="text" value="">
+<div class="absolute right-2.5 flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-outline text-label-sm font-label-sm uppercase">F4</span>
+</div>
+</div>
+<!-- Fast Scan Switch Pill -->
+<label class="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-surface-container text-on-surface-variant cursor-pointer hover:bg-surface-container-high transition-colors shrink-0">
+<span class="text-label-md font-label-md text-on-surface flex items-center gap-1">
+<span class="text-tertiary-container material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="">Chế độ quét nhanh</span>
+</span>
+<input checked="" class="sr-only peer" id="auto-scan-toggle" type="checkbox">
+<div class="w-8 h-4.5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-primary-container relative"></div>
+</label>
+</div>
+<!-- 2. Category Filter Bar -->
+<div class="px-space-md py-2 bg-surface-container-lowest shadow-[0_1px_2px_rgba(0,0,0,0.03)] flex items-center gap-space-xs overflow-x-auto text-label-md shrink-0">
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md shadow-sm whitespace-nowrap transition-transform active:scale-95 flex items-center gap-1.5" type="button">
+<span class="">Tất cả</span>
+<span class="px-1.5 py-0.2 rounded-full bg-white/20 text-label-sm">142</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap transition-colors" type="button">
+          Áo Thun (38)
+        </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap transition-colors" type="button">
+          Áo Polo (24)
+        </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap transition-colors" type="button">
+          Quần Jeans (19)
+        </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap transition-colors" type="button">
+          Sơ mi (32)
+        </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap transition-colors" type="button">
+          Phụ kiện (29)
+        </button>
+</div>
+<!-- 3. High-Density Product Bento Grid -->
+<div class="p-space-md flex-1 overflow-y-auto grid grid-cols-4 gap-3 content-start">
+<!-- Product 1 -->
+<div class="group relative flex flex-col justify-between p-3 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md hover:bg-surface-bright transition-all cursor-pointer" onclick="OmniPOS.addToCart('PL-BLK-L')">
+<div>
+<div class="flex items-center justify-between text-outline text-label-sm font-label-sm mb-1">
+<span class="flex items-center gap-1 font-mono tracking-wider">
+<span class="material-symbols-outlined text-[14px]">qr_code_2</span>
+                PL-BLK-L
+              </span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container text-label-sm font-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="">Khả dụng: 48</span>
+</span>
+</div>
+<h3 class="font-headline-sm text-label-md text-on-surface group-hover:text-primary transition-colors line-clamp-2">
+              Áo Polo Coolmax Đen - Size L
+            </h3>
+</div>
+<div class="mt-3 pt-2 shadow-[inset_0_1px_0_0_rgba(115,118,134,0.08)] flex items-end justify-between">
+<div>
+<span class="text-label-sm text-outline block">Đơn giá</span>
+<span class="font-tabular-stat text-tabular-stat text-primary font-bold">350.000₫</span>
+</div>
+<div class="w-7 h-7 rounded-lg bg-primary-fixed hover:bg-primary hover:text-on-primary text-on-primary-fixed flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="group relative flex flex-col justify-between p-3 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md hover:bg-surface-bright transition-all cursor-pointer" onclick="OmniPOS.addToCart('TS-WHT-M')">
+<div>
+<div class="flex items-center justify-between text-outline text-label-sm font-label-sm mb-1">
+<span class="flex items-center gap-1 font-mono tracking-wider">
+<span class="material-symbols-outlined text-[14px]">qr_code_2</span>
+                TS-WHT-M
+              </span>
+<span class="px-1.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-container text-label-sm font-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span class="">Sắp hết: 3</span>
+</span>
+</div>
+<h3 class="font-headline-sm text-label-md text-on-surface group-hover:text-primary transition-colors line-clamp-2">
+              Áo Thun Oversize Trắng - Size M
+            </h3>
+</div>
+<div class="mt-3 pt-2 shadow-[inset_0_1px_0_0_rgba(115,118,134,0.08)] flex items-end justify-between">
+<div>
+<span class="text-label-sm text-outline block">Đơn giá</span>
+<span class="font-tabular-stat text-tabular-stat text-primary font-bold">250.000₫</span>
+</div>
+<div class="w-7 h-7 rounded-lg bg-primary-fixed hover:bg-primary hover:text-on-primary text-on-primary-fixed flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="group relative flex flex-col justify-between p-3 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md hover:bg-surface-bright transition-all cursor-pointer" onclick="OmniPOS.addToCart('JN-BLU-31')">
+<div>
+<div class="flex items-center justify-between text-outline text-label-sm font-label-sm mb-1">
+<span class="flex items-center gap-1 font-mono tracking-wider">
+<span class="material-symbols-outlined text-[14px]">qr_code_2</span>
+                JN-BLU-31
+              </span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container text-label-sm font-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="">Khả dụng: 19</span>
+</span>
+</div>
+<h3 class="font-headline-sm text-label-md text-on-surface group-hover:text-primary transition-colors line-clamp-2">
+              Quần Jeans Slimfit Xanh - Size 31
+            </h3>
+</div>
+<div class="mt-3 pt-2 shadow-[inset_0_1px_0_0_rgba(115,118,134,0.08)] flex items-end justify-between">
+<div>
+<span class="text-label-sm text-outline block">Đơn giá</span>
+<span class="font-tabular-stat text-tabular-stat text-primary font-bold">550.000₫</span>
+</div>
+<div class="w-7 h-7 rounded-lg bg-primary-fixed hover:bg-primary hover:text-on-primary text-on-primary-fixed flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</div>
+</div>
+</div>
+<!-- Product 4: Out of Stock -->
+<div class="relative flex flex-col justify-between p-3 rounded-xl bg-surface-container opacity-60 cursor-not-allowed">
+<div>
+<div class="flex items-center justify-between text-outline text-label-sm font-label-sm mb-1">
+<span class="flex items-center gap-1 font-mono tracking-wider">
+<span class="material-symbols-outlined text-[14px]">qr_code_2</span>
+                JK-GRN-XL
+              </span>
+<span class="px-1.5 py-0.5 rounded-full bg-error-container text-on-error-container text-label-sm font-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span class="">Hết hàng (0)</span>
+</span>
+</div>
+<h3 class="font-headline-sm text-label-md text-on-surface-variant line-clamp-2">
+              Áo Khoác Bomber Rêu - Size XL
+            </h3>
+</div>
+<div class="mt-3 pt-2 shadow-[inset_0_1px_0_0_rgba(115,118,134,0.1)] flex items-end justify-between">
+<div>
+<span class="text-label-sm text-outline block">Đơn giá</span>
+<span class="font-tabular-stat text-tabular-stat text-outline font-bold line-through">650.000₫</span>
+</div>
+<div class="w-7 h-7 rounded-lg bg-surface-variant text-outline flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">block</span>
+</div>
+</div>
+</div>
+<!-- Product 5 -->
+<div class="group relative flex flex-col justify-between p-3 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md hover:bg-surface-bright transition-all cursor-pointer" onclick="OmniPOS.addToCart('TB-ECO-01')">
+<div>
+<div class="flex items-center justify-between text-outline text-label-sm font-label-sm mb-1">
+<span class="flex items-center gap-1 font-mono tracking-wider">
+<span class="material-symbols-outlined text-[14px]">qr_code_2</span>
+                TB-ECO-01
+              </span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container text-label-sm font-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="">Khả dụng: 120</span>
+</span>
+</div>
+<h3 class="font-headline-sm text-label-md text-on-surface group-hover:text-primary transition-colors line-clamp-2">
+              Túi Tote Canvas Omni Eco
+            </h3>
+</div>
+<div class="mt-3 pt-2 shadow-[inset_0_1px_0_0_rgba(115,118,134,0.08)] flex items-end justify-between">
+<div>
+<span class="text-label-sm text-outline block">Đơn giá</span>
+<span class="font-tabular-stat text-tabular-stat text-primary font-bold">150.000₫</span>
+</div>
+<div class="w-7 h-7 rounded-lg bg-primary-fixed hover:bg-primary hover:text-on-primary text-on-primary-fixed flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</div>
+</div>
+</div>
+<!-- Product 6 -->
+<div class="group relative flex flex-col justify-between p-3 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md hover:bg-surface-bright transition-all cursor-pointer" onclick="OmniPOS.addToCart('CAP-BLK-01')">
+<div>
+<div class="flex items-center justify-between text-outline text-label-sm font-label-sm mb-1">
+<span class="flex items-center gap-1 font-mono tracking-wider">
+<span class="material-symbols-outlined text-[14px]">qr_code_2</span>
+                CAP-BLK-01
+              </span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container text-label-sm font-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="">Khả dụng: 64</span>
+</span>
+</div>
+<h3 class="font-headline-sm text-label-md text-on-surface group-hover:text-primary transition-colors line-clamp-2">
+              Mũ Lưỡi Trai Classic Đen
+            </h3>
+</div>
+<div class="mt-3 pt-2 shadow-[inset_0_1px_0_0_rgba(115,118,134,0.08)] flex items-end justify-between">
+<div>
+<span class="text-label-sm text-outline block">Đơn giá</span>
+<span class="font-tabular-stat text-tabular-stat text-primary font-bold">180.000₫</span>
+</div>
+<div class="w-7 h-7 rounded-lg bg-primary-fixed hover:bg-primary hover:text-on-primary text-on-primary-fixed flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</div>
+</div>
+</div>
+<!-- Product 7 -->
+<div class="group relative flex flex-col justify-between p-3 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md hover:bg-surface-bright transition-all cursor-pointer" onclick="OmniPOS.addToCart('BLT-LTH-01')">
+<div>
+<div class="flex items-center justify-between text-outline text-label-sm font-label-sm mb-1">
+<span class="flex items-center gap-1 font-mono tracking-wider">
+<span class="material-symbols-outlined text-[14px]">qr_code_2</span>
+                BLT-LTH-01
+              </span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container text-label-sm font-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="">Khả dụng: 25</span>
+</span>
+</div>
+<h3 class="font-headline-sm text-label-md text-on-surface group-hover:text-primary transition-colors line-clamp-2">
+              Thắt Lưng Da Bò Ý - Khóa Bạc
+            </h3>
+</div>
+<div class="mt-3 pt-2 shadow-[inset_0_1px_0_0_rgba(115,118,134,0.08)] flex items-end justify-between">
+<div>
+<span class="text-label-sm text-outline block">Đơn giá</span>
+<span class="font-tabular-stat text-tabular-stat text-primary font-bold">420.000₫</span>
+</div>
+<div class="w-7 h-7 rounded-lg bg-primary-fixed hover:bg-primary hover:text-on-primary text-on-primary-fixed flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</div>
+</div>
+</div>
+<!-- Product 8 -->
+<div class="group relative flex flex-col justify-between p-3 rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md hover:bg-surface-bright transition-all cursor-pointer" onclick="OmniPOS.addToCart('SK-SET-03')">
+<div>
+<div class="flex items-center justify-between text-outline text-label-sm font-label-sm mb-1">
+<span class="flex items-center gap-1 font-mono tracking-wider">
+<span class="material-symbols-outlined text-[14px]">qr_code_2</span>
+                SK-SET-03
+              </span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container text-label-sm font-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="">Khả dụng: 88</span>
+</span>
+</div>
+<h3 class="font-headline-sm text-label-md text-on-surface group-hover:text-primary transition-colors line-clamp-2">
+              Vớ Cổ Cao Thể Thao (Set 3 đôi)
+            </h3>
+</div>
+<div class="mt-3 pt-2 shadow-[inset_0_1px_0_0_rgba(115,118,134,0.08)] flex items-end justify-between">
+<div>
+<span class="text-label-sm text-outline block">Đơn giá</span>
+<span class="font-tabular-stat text-tabular-stat text-primary font-bold">95.000₫</span>
+</div>
+<div class="w-7 h-7 rounded-lg bg-primary-fixed hover:bg-primary hover:text-on-primary text-on-primary-fixed flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Action Key Legend Footbar -->
+<div class="px-space-md py-2 bg-surface-container-lowest shadow-[0_-1px_0_0_rgba(115,118,134,0.12)] flex items-center justify-between text-label-sm text-outline">
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-surface-container font-mono text-on-surface">F1-F3</kbd> Chuyển đơn</span>
+<span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-surface-container font-mono text-on-surface">F4</kbd> Quét SKU</span>
+<span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-surface-container font-mono text-on-surface">F6</kbd> Khách hàng</span>
+<span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-surface-container font-mono text-on-surface">F7</kbd> Giảm giá</span>
+<span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-surface-container font-mono text-on-surface">F9</kbd> Thanh toán</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">wifi</span>
+<span class="">Máy in bill: Sẵn sàng</span>
+</div>
+</div>
+</section>
+<!-- RIGHT PANEL: CART & CHECKOUT LEDGER (38% WIDTH) -->
+<section class="w-[38%] flex flex-col h-full bg-surface-container-lowest shadow-2xl z-20">
+<!-- 1. Customer Identification Bar -->
+<div class="p-3 bg-surface-container-low shadow-[0_1px_0_0_rgba(115,118,134,0.12)] flex items-center justify-between">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-label-md text-on-surface truncate">Nguyễn Văn An</span>
+<span class="text-outline text-label-sm">•</span>
+<span class="text-body-sm text-on-surface-variant font-mono">0909.123.456</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="px-1.5 py-0.2 rounded bg-tertiary-fixed text-on-tertiary-fixed-variant text-label-sm font-label-sm flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px] text-tertiary" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<span class="">Hạng Vàng</span>
+</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-on-primary-fixed-variant text-label-sm font-label-sm">
+                ⭐ 1.250 điểm
+              </span>
+</div>
+</div>
+</div>
+<a href="#crm" class="px-2.5 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-label-sm font-label-md transition-colors flex items-center gap-1 shrink-0"><span class="material-symbols-outlined text-[16px]">sync_alt</span><span class="">Đổi khách</span><span class="text-outline text-[10px] font-mono">[F6]</span></a>
+</div>
+<!-- 2. Cart Items Table/List -->
+<div class="flex-1 overflow-y-auto px-space-md py-2 space-y-1" id="cart-list">
+<!-- Cart Item 1 -->
+<div class="p-2.5 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors shadow-sm flex items-center justify-between gap-2">
+<div class="flex-1 min-w-0">
+<h4 class="font-headline-sm text-label-md text-on-surface truncate">
+              1. Áo Polo Coolmax Đen - L
+            </h4>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-body-sm text-outline font-tabular-stat">350.000₫</span>
+<span class="text-label-sm text-secondary bg-secondary-container/40 px-1 rounded font-medium">Kho: 48</span>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<!-- Stepper -->
+<div class="flex items-center rounded-lg bg-surface-container p-0.5">
+<button class="w-6 h-6 rounded flex items-center justify-center text-on-surface-variant hover:bg-surface-container-lowest active:scale-95 transition" onclick="OmniPOS.updateQty(1, -1)" type="button">
+<span class="material-symbols-outlined text-[14px]">remove</span>
+</button>
+<span class="w-7 text-center font-tabular-stat text-label-md font-bold text-on-surface" id="qty-item-1">2</span>
+<button class="w-6 h-6 rounded flex items-center justify-center text-on-surface-variant hover:bg-surface-container-lowest active:scale-95 transition" onclick="OmniPOS.updateQty(1, 1)" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+<!-- Line Total -->
+<div class="w-24 text-right">
+<span class="font-tabular-stat text-label-md font-bold text-on-surface">700.000₫</span>
+</div>
+<!-- Trash -->
+<button class="text-outline hover:text-error p-1 rounded transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Cart Item 2 -->
+<div class="p-2.5 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors shadow-sm flex items-center justify-between gap-2">
+<div class="flex-1 min-w-0">
+<h4 class="font-headline-sm text-label-md text-on-surface truncate">
+              2. Quần Jeans Slimfit Xanh - 31
+            </h4>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-body-sm text-outline font-tabular-stat line-through">550.000₫</span>
+<span class="px-1.5 py-0.2 rounded bg-tertiary-fixed text-on-tertiary-container text-label-sm font-label-sm">
+                -50.000₫ (Voucher Vàng)
+              </span>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<!-- Stepper -->
+<div class="flex items-center rounded-lg bg-surface-container p-0.5">
+<button class="w-6 h-6 rounded flex items-center justify-center text-on-surface-variant hover:bg-surface-container-lowest active:scale-95 transition" onclick="OmniPOS.updateQty(2, -1)" type="button">
+<span class="material-symbols-outlined text-[14px]">remove</span>
+</button>
+<span class="w-7 text-center font-tabular-stat text-label-md font-bold text-on-surface" id="qty-item-2">1</span>
+<button class="w-6 h-6 rounded flex items-center justify-center text-on-surface-variant hover:bg-surface-container-lowest active:scale-95 transition" onclick="OmniPOS.updateQty(2, 1)" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+<!-- Line Total -->
+<div class="w-24 text-right">
+<span class="font-tabular-stat text-label-md font-bold text-on-surface">500.000₫</span>
+</div>
+<!-- Trash -->
+<button class="text-outline hover:text-error p-1 rounded transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Cart Item 3 -->
+<div class="p-2.5 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors shadow-sm flex items-center justify-between gap-2">
+<div class="flex-1 min-w-0">
+<h4 class="font-headline-sm text-label-md text-on-surface truncate">
+              3. Túi Canvas Omni Eco
+            </h4>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-body-sm text-outline font-tabular-stat">150.000₫</span>
+<span class="text-label-sm text-outline-variant bg-surface-container px-1 rounded">Quà tặng kèm</span>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<!-- Stepper -->
+<div class="flex items-center rounded-lg bg-surface-container p-0.5">
+<button class="w-6 h-6 rounded flex items-center justify-center text-on-surface-variant hover:bg-surface-container-lowest active:scale-95 transition" onclick="OmniPOS.updateQty(3, -1)" type="button">
+<span class="material-symbols-outlined text-[14px]">remove</span>
+</button>
+<span class="w-7 text-center font-tabular-stat text-label-md font-bold text-on-surface" id="qty-item-3">1</span>
+<button class="w-6 h-6 rounded flex items-center justify-center text-on-surface-variant hover:bg-surface-container-lowest active:scale-95 transition" onclick="OmniPOS.updateQty(3, 1)" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+<!-- Line Total -->
+<div class="w-24 text-right">
+<span class="font-tabular-stat text-label-md font-bold text-on-surface">150.000₫</span>
+</div>
+<!-- Trash -->
+<button class="text-outline hover:text-error p-1 rounded transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 3. Checkout & Payment Settlement Section -->
+<div class="p-space-md bg-surface-container-low shadow-[0_-1px_0_0_rgba(115,118,134,0.12)] flex flex-col gap-2.5">
+<!-- Ledger Calculation Breakdown -->
+<div class="p-3 rounded-xl bg-surface-container-lowest shadow-sm space-y-1.5">
+<div class="flex items-center justify-between text-body-sm text-outline">
+<span class="">Tạm tính (4 sản phẩm)</span>
+<span class="font-tabular-stat text-on-surface font-semibold">1.400.000₫</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-secondary flex items-center gap-1">
+<span class="">Giảm giá thành viên [F7]</span>
+<span class="material-symbols-outlined text-[14px]">sell</span>
+</span>
+<span class="font-tabular-stat text-secondary font-bold">-50.000₫</span>
+</div>
+<div class="pt-2 shadow-[inset_0_1px_0_0_rgba(115,118,134,0.12)] flex items-baseline justify-between">
+<div>
+<span class="font-headline-sm text-label-md text-on-surface block uppercase tracking-wider">Khách cần trả</span>
+<span class="text-label-sm text-outline font-label-sm">Đã gồm VAT 8%</span>
+</div>
+<div class="text-right">
+<span class="font-display text-headline-lg text-primary-container font-black tabular-nums tracking-tight">1.350.000₫</span>
+</div>
+</div>
+</div>
+<!-- Split Payment Tabs -->
+<div class="flex items-center gap-1.5">
+<button class="flex-1 py-2 px-2 rounded-lg bg-primary text-on-primary font-label-md text-label-sm shadow-sm flex items-center justify-center gap-1 transition" type="button">
+<span class="material-symbols-outlined text-[15px]">qr_code_scanner</span>
+<span class="">VietQR (1.000.000₫)</span>
+</button>
+<button class="flex-1 py-2 px-2 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-sm shadow-sm flex items-center justify-center gap-1 transition" type="button">
+<span class="material-symbols-outlined text-[15px]">payments</span>
+<span class="">Tiền mặt (350.000₫)</span>
+</button>
+<button class="flex-1 py-2 px-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-sm transition flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[15px]">credit_card</span>
+<span class="">Quẹt thẻ POS</span>
+</button>
+</div>
+<!-- Live VietQR Dynamic Preview Box -->
+<div class="p-2.5 rounded-xl bg-surface-container-lowest shadow-sm flex items-center gap-3 relative overflow-hidden">
+<!-- Background glow circle -->
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary-fixed/40 rounded-full blur-xl pointer-events-none"></div>
+<!-- Crisp VietQR Graphic (High Contrast Optical Reticle) -->
+<div class="relative shrink-0 w-20 h-20 bg-white p-1 rounded-lg shadow-sm flex items-center justify-center">
+<!-- Optical Reticle Corners -->
+<div class="absolute top-0.5 left-0.5 w-2 h-2 shadow-[inset_1.5px_1.5px_0_0_#004ac6]"></div>
+<div class="absolute top-0.5 right-0.5 w-2 h-2 shadow-[inset_-1.5px_1.5px_0_0_#004ac6]"></div>
+<div class="absolute bottom-0.5 left-0.5 w-2 h-2 shadow-[inset_1.5px_-1.5px_0_0_#004ac6]"></div>
+<div class="absolute bottom-0.5 right-0.5 w-2 h-2 shadow-[inset_-1.5px_-1.5px_0_0_#004ac6]"></div>
+<!-- Dynamic Vector QR Blueprint -->
+<svg class="w-16 h-16 text-inverse-surface" fill="currentColor" viewBox="0 0 24 24">
+<path d="M2 2h7v7H2V2zm2 2v3h3V4H4zm5 0h2v2H9V4zm2 2h2v2h-2V6zm2-2h2v2h-2V4zm2 0h7v7h-7V2zm2 2v3h3V4h-3zm-6 7h2v2h-2v-2zm-3 2H2v7h7v-7zm-2 2v3H4v-3h3zm5 0h2v3h-2v-3zm3 2h2v2h-2v-2zm2-2h2v2h-2v-2zm-2 4h4v3h-4v-3zm6-2h2v5h-2v-5zm0-4h2v2h-2v-2z"></path>
+</svg>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-secondary text-label-sm font-label-md">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="">Sẵn sàng nhận tiền</span>
+</div>
+<span class="text-tertiary font-tabular-stat text-label-sm font-bold bg-tertiary-fixed px-1.5 py-0.2 rounded">
+                02:45s
+              </span>
+</div>
+<p class="font-headline-sm text-label-md text-on-surface font-semibold mt-0.5 truncate">
+              Chờ quét: 1.000.000₫
+            </p>
+<p class="text-body-sm text-outline text-[11px] truncate mt-0.5">
+              Khớp tự động • Napas247 • VCB 99882245
+            </p>
+</div>
+</div>
+<!-- Giant Bottom Operational Actions -->
+<div class="flex items-center gap-2 pt-1">
+<button class="w-[32%] h-12 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-label-md transition flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[18px]">pause_circle</span>
+<span class="">Lưu tạm</span>
+<span class="text-outline text-[10px] font-mono">[F8]</span>
+</button>
+<button class="w-[68%] h-12 rounded-xl bg-secondary hover:bg-on-secondary-container text-on-secondary font-headline-sm text-headline-sm shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 transition active:scale-[0.99]" onclick="OmniPOS.completePayment()" type="button">
+<span class="material-symbols-outlined text-[20px]">print_connect</span>
+<span class="">THANH TOÁN &amp; IN BILL</span>
+<span class="px-1.5 py-0.2 rounded bg-black/20 text-label-sm font-mono">[F9]</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Interactive Terminal Engine Script -->
+<script>
+    const OmniPOS = {
+      quantities: { 1: 2, 2: 1, 3: 1 },
+      
+      updateQty(itemId, delta) {
+        if (!this.quantities[itemId]) this.quantities[itemId] = 0;
+        this.quantities[itemId] = Math.max(1, this.quantities[itemId] + delta);
+        const el = document.getElementById(`qty-item-${itemId}`);
+        if (el) el.innerText = this.quantities[itemId];
+      },
+      
+      addToCart(sku) {
+        const input = document.getElementById('barcode-input');
+        if (input) {
+          input.value = sku;
+          setTimeout(() => { input.value = ''; }, 900);
+        }
+      },
+
+      completePayment() {
+        const btn = event.currentTarget;
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = `
+          <span class="material-symbols-outlined text-[20px] animate-spin">refresh</span>
+          <span>ĐANG IN HÓA ĐƠN...</span>
+        `;
+        btn.classList.add('opacity-90');
+        setTimeout(() => {
+          btn.innerHTML = `
+            <span class="material-symbols-outlined text-[20px]">check_circle</span>
+            <span>HOÀN TẤT ĐƠN HÀNG!</span>
+          `;
+          setTimeout(() => {
+            btn.innerHTML = originalHtml;
+            btn.classList.remove('opacity-90');
+          }, 1500);
+        }, 1200);
+      }
+    };
+
+    // Keyboard Shortcuts listener for POS High-Speed Workflow
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'F4') {
+        e.preventDefault();
+        const input = document.getElementById('barcode-input');
+        if (input) { input.focus(); input.select(); }
+      } else if (e.key === 'F9') {
+        e.preventDefault();
+        OmniPOS.completePayment();
+      }
+    });
+  </script>
+</div></main>
+
+</body></html>
